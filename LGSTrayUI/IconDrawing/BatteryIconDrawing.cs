@@ -32,12 +32,15 @@ public static partial class BatteryIconDrawing
     private static Color _defaultColor = Color.Gray;
 
     // Icon mode battery fill colors (level-based, per theme)
-    private static Color _iconLowColorLight = Color.FromArgb(255, 0xB0, 0x30, 0x30);
-    private static Color _iconMediumColorLight = Color.FromArgb(255, 0xB0, 0x90, 0x20);
-    private static Color _iconHighColorLight = Color.FromArgb(255, 0x40, 0xA0, 0x20);
-    private static Color _iconLowColorDark = Color.FromArgb(255, 0xE8, 0x8B, 0x8B);
-    private static Color _iconMediumColorDark = Color.FromArgb(255, 0xF2, 0xD4, 0x79);
-    private static Color _iconHighColorDark = Color.FromArgb(255, 0xB4, 0xF2, 0xA0);
+    private static Color _iconVeryLowColorLight = ColorTranslator.FromHtml("#e91d1d");
+    private static Color _iconLowColorLight = ColorTranslator.FromHtml("#ea8c12");
+    private static Color _iconMediumColorLight = ColorTranslator.FromHtml("#acdd42");
+    private static Color _iconHighColorLight = ColorTranslator.FromHtml("#43db35");
+
+    private static Color _iconVeryLowColorDark = ColorTranslator.FromHtml("#E88B8B");
+    private static Color _iconLowColorDark = ColorTranslator.FromHtml("#F2D479");
+    private static Color _iconMediumColorDark = ColorTranslator.FromHtml("#B4F2A0");
+    private static Color _iconHighColorDark = ColorTranslator.FromHtml("#6fec45");
 
     // Battery interior bounds as fractions of imageSize (measured from Indicator*.png)
     // Inset from the inner border edge to avoid bleeding under anti-aliased frame pixels
@@ -58,11 +61,14 @@ public static partial class BatteryIconDrawing
         _headsetColor = ParseColor(settings.HeadsetColor, Color.Blue);
         _defaultColor = ParseColor(settings.DefaultColor, Color.Gray);
 
+        _iconVeryLowColorLight = ParseColor(settings.IconVeryLowColorLight, _iconVeryLowColorLight);
         _iconLowColorLight = ParseColor(settings.IconLowColorLight, _iconLowColorLight);
         _iconMediumColorLight = ParseColor(settings.IconMediumColorLight, _iconMediumColorLight);
         _iconHighColorLight = ParseColor(settings.IconHighColorLight, _iconHighColorLight);
-        _iconLowColorDark = ParseColor(settings.IconLowColorDark, _iconLowColorDark);
-        _iconMediumColorDark = ParseColor(settings.IconMediumColorDark, _iconMediumColorDark);
+
+        _iconVeryLowColorDark = ParseColor(settings.IconLowColorDark, _iconVeryLowColorDark);
+        _iconLowColorDark = ParseColor(settings.IconMediumColorDark, _iconLowColorDark);
+        _iconMediumColorDark = ParseColor(settings.IconHighColorDark, _iconMediumColorDark);
         _iconHighColorDark = ParseColor(settings.IconHighColorDark, _iconHighColorDark);
     }
 
@@ -126,9 +132,11 @@ public static partial class BatteryIconDrawing
         // Select color based on battery level and theme
         Color fillColor;
         bool light = CheckTheme.LightTheme;
-        if (device.BatteryPercentage < 10)
+        if (device.BatteryPercentage < 15)
+            fillColor = light ? _iconVeryLowColorLight : _iconVeryLowColorDark;
+        else if (device.BatteryPercentage < 30)
             fillColor = light ? _iconLowColorLight : _iconLowColorDark;
-        else if (device.BatteryPercentage < 50)
+        else if (device.BatteryPercentage < 65)
             fillColor = light ? _iconMediumColorLight : _iconMediumColorDark;
         else
             fillColor = light ? _iconHighColorLight : _iconHighColorDark;

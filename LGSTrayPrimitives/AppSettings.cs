@@ -58,36 +58,45 @@ public class UISettings
     // Icon mode battery fill colors — light theme
 
     /// <summary>
-    /// Icon mode fill color for low battery (&lt;10%) on light theme.
+    /// Icon mode fill color for very low battery (&lt;15%) on light theme.
     /// </summary>
-    public string IconLowColorLight { get; set; } = "#B03030";
+    public string IconVeryLowColorLight { get; set; } = "#e91d1d";
 
     /// <summary>
-    /// Icon mode fill color for medium battery (10-49%) on light theme.
+    /// Icon mode fill color for low battery (15-30%) on light theme.
     /// </summary>
-    public string IconMediumColorLight { get; set; } = "#B09020";
+    public string IconLowColorLight { get; set; } = "#ea8c12";
 
     /// <summary>
-    /// Icon mode fill color for high battery (>=50%) on light theme.
+    /// Icon mode fill color for high battery (30-65%) on light theme.
     /// </summary>
-    public string IconHighColorLight { get; set; } = "#40A020";
+    public string IconMediumColorLight { get; set; } = "#acdd42";
+    /// <summary>
+    /// Icon mode fill color for high battery (>=65%) on light theme.
+    /// </summary>
+    public string IconHighColorLight { get; set; } = "#43db35";
 
     // Icon mode battery fill colors — dark theme
 
     /// <summary>
-    /// Icon mode fill color for low battery (&lt;10%) on dark theme.
+    /// Icon mode fill color for low battery (&lt;15%) on dark theme.
     /// </summary>
-    public string IconLowColorDark { get; set; } = "#E88B8B";
+    public string IconVeryLowColorDark { get; set; } = "#E88B8B";
 
     /// <summary>
-    /// Icon mode fill color for medium battery (10-49%) on dark theme.
+    /// Icon mode fill color for low battery (15-30%) on dark theme.
     /// </summary>
-    public string IconMediumColorDark { get; set; } = "#F2D479";
+    public string IconLowColorDark { get; set; } = "#F2D479";
 
     /// <summary>
-    /// Icon mode fill color for high battery (>=50%) on dark theme.
+    /// Icon mode fill color for medium battery (30-65%) on dark theme.
     /// </summary>
-    public string IconHighColorDark { get; set; } = "#B4F2A0";
+    public string IconMediumColorDark { get; set; } = "#B4F2A0";
+
+    /// <summary>
+    /// Icon mode fill color for high battery (>=65%) on dark theme.
+    /// </summary>
+    public string IconHighColorDark { get; set; } = "#6fec45";
 }
 
 public class HttpServerSettings
